@@ -1,0 +1,123 @@
+//  Условие
+
+// Создайте простой калькулятор Calc, который будет принимать значение a и значение b, а так же идентификатор нужного действия.
+// Ваш калькулятор должен возвращать сообщение“ Error” в том случае если вы не указали все 3 параметра или если вычисляемые значения оказались не числами.
+// В случае с неверным“ идентификатором нужного действия” возвращайте“ unknown operation”
+
+
+
+// Решение
+
+// myCalc(); // Запуск скрипта (калькулятора)
+
+
+
+// Функция для вызова калькулятора, ввода данных, вывода ответа
+function myCalc() {
+
+  let operation = prompt('Введите операцию из списка:\nsum(Сложение)\ndif(Вычетание)\nmulti(Умножение)\ndiv(Деление)\nrem(Взятие остатка от деления)\nexp(Возведение в степень)');
+
+  if (operation === null) return; // Выбрать отмену = закрыть калькулятор
+
+  if (!checkOperation(operation)) { // Проверка на существование операции
+    alert('unknown operation');
+    return myCalc(); // Запустить калькулятор сначала
+  }
+
+  let a = prompt('Введите первое число:')
+  if (a === null) return; // Выбрать отмену = закрыть калькулятор
+
+  if (!checkIsRightNumber(a)) { // Проверка на правильность ввода числа
+    alert('Error');
+    return myCalc();
+  }
+
+  let b = prompt('Введите второе число:')
+  if (b === null) return;
+
+  if (!checkIsRightNumber(b)) {
+    alert('Error');
+    return myCalc();
+  }
+
+  a = +a; // Смена типа переменной на Number (т.к. калькулятор работает с числами, а prompt возвращает строку)
+  b = +b;
+
+  alert(calc(operation, a, b)); // Вывод ответа
+
+  return myCalc() // Запустить калькулятор сначала
+}
+
+
+
+//  Калькулятор
+function calc(operation, a, b) {
+  switch (operation) {
+    case 'sum':
+      return getSum(a, b);
+    case 'dif':
+      return getDif(a, b);
+    case 'multi':
+      return getMulti(a, b);
+    case 'div':
+      return getDiv(a, b);
+    case 'rem':
+      return getRem(a, b);
+    case 'exp':
+      return getExp(a, b);
+  }
+}
+
+
+
+// Проверки на правильность вводимых данных
+function checkIsRightNumber(a) {
+  return a !== '' && !isNaN(a);
+}
+
+function checkOperation(operation) {
+  return ['sum', 'dif', 'multi', 'div', 'rem', 'exp'].includes(operation.trim())
+}
+
+
+
+//  Операции
+function getSum(a, b) { //   Сложение +
+  return a + b
+}
+
+function getDif(a, b) { //   Вычитание -
+  return a - b
+}
+
+function getMulti(a, b) { //   Умножение *
+  return a * b
+}
+
+function getDiv(a, b) { ///   Деление /
+  return a / b
+}
+
+function getRem(a, b) { ///   Взятие остатка от деления %
+  return a % b
+}
+
+function getExp(a, b) { ///   Возведение в степень **
+  return a ** b
+}
+
+
+//  Тест вызовов калькулятора
+// console.log(`Сложение 40 и 2: ${calc('sum', 40, 2)}`)
+// console.log(`Разность 40 и 2: ${calc('dif', 40, 2)}`)
+// console.log(`Умножение 40 и 2: ${calc('multi', 40, 2)}`)
+// console.log(`Деление 40 и 2: ${calc('div', 40, 2)}`)
+// console.log(`Остаток от деления 146 на 7: ${calc('rem', 146, 7)}`)
+// console.log(`Возведение 2 в степень 8: ${calc('exp', 2, 8)}`)
+
+// Тест проверки на правильность вводимых данных
+// console.log(`Ввод числа: ${checkIsRightNumber(1)}`)
+// console.log(`Ввод строки с числом: ${checkIsRightNumber('1')}`)
+// console.log(`Ввод строки: ${checkIsRightNumber('some string')}`)
+// console.log(`Ввод пустой строки: ${checkIsRightNumber('')}`)
+// console.log(`Вызов без параметра: ${checkIsRightNumber()}`)
