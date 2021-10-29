@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.header__h1 {
+	text-align: center;
+}
+
+dl dt {
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
