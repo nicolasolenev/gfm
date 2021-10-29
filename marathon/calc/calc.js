@@ -51,20 +51,27 @@ function createCalc() {
 
 //  Калькулятор
 function calc(operation, a, b) {
+  operation = operation.trim().toLowerCase();
   a = +a; // Явное преобразование типа в Number
   b = +b;
   switch (operation) {
     case 'sum':
+    case 'сложение':
       return getSum(a, b);
     case 'dif':
+    case 'вычетание':
       return getDif(a, b);
     case 'multi':
+    case 'умножение':
       return getMulti(a, b);
     case 'div':
+    case 'деление':
       return getDiv(a, b);
     case 'rem':
+    case 'взятие остатка от деления':
       return getRem(a, b);
     case 'exp':
+    case 'возведение в степень':
       return getExp(a, b);
   }
 }
@@ -73,7 +80,7 @@ function calc(operation, a, b) {
 
 // Проверки на правильность вводимых данных
 function checkOperation(operation) {
-  return ['sum', 'dif', 'multi', 'div', 'rem', 'exp'].includes(operation.trim())
+  return ['sum', 'dif', 'multi', 'div', 'rem', 'exp', 'сложение', 'вычетание', 'умножение', 'деление', 'взятие остатка от деления', 'возведение в степень'].includes(operation.trim().toLowerCase())
 }
 
 function checkIsRightNumber(a) {
