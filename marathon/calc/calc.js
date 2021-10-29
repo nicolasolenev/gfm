@@ -13,45 +13,46 @@
 
 
 // Функция для вызова калькулятора, ввода данных, вывода ответа
-function myCalc() {
+function createCalc() {
+  while (true) {
 
-  let operation = prompt('Введите операцию из списка:\nsum(Сложение)\ndif(Вычетание)\nmulti(Умножение)\ndiv(Деление)\nrem(Взятие остатка от деления)\nexp(Возведение в степень)');
+    let a;
+    let b;
+    let operation;
 
-  if (operation === null) return; // Выбрать отмену = закрыть калькулятор
+    while (true) {
+      operation = prompt('Введите операцию из списка:\nsum(Сложение)\ndif(Вычетание)\nmulti(Умножение)\ndiv(Деление)\nrem(Взятие остатка от деления)\nexp(Возведение в степень)');
+      if (operation === null) return; // Выбрать отмену = закрыть калькулятор
+      if (!checkOperation(operation)) { // Проверка на существование операции
+        alert('unknown operation');
+        continue;
+      }
+      a = prompt('Введите первое число:')
+      if (a === null) return; // Выбрать отмену = закрыть калькулятор
+      if (!checkIsRightNumber(a)) { // Проверка на правильность ввода числа
+        alert('Error');
+        continue;
+      }
+      b = prompt('Введите второе число:')
+      if (b === null) return;
+      if (!checkIsRightNumber(b)) { // Проверка на правильность ввода числа
+        alert('Error');
+        continue;
+      }
+      break;
+    }
 
-  if (!checkOperation(operation)) { // Проверка на существование операции
-    alert('unknown operation');
-    return myCalc(); // Запустить калькулятор сначала
+    alert(calc(operation, a, b)); // Вывод ответа
   }
 
-  let a = prompt('Введите первое число:')
-  if (a === null) return; // Выбрать отмену = закрыть калькулятор
-
-  if (!checkIsRightNumber(a)) { // Проверка на правильность ввода числа
-    alert('Error');
-    return myCalc();
-  }
-
-  let b = prompt('Введите второе число:')
-  if (b === null) return;
-
-  if (!checkIsRightNumber(b)) {
-    alert('Error');
-    return myCalc();
-  }
-
-  a = +a; // Смена типа переменной на Number (т.к. калькулятор работает с числами, а prompt возвращает строку)
-  b = +b;
-
-  alert(calc(operation, a, b)); // Вывод ответа
-
-  return myCalc() // Запустить калькулятор сначала
 }
 
 
 
 //  Калькулятор
 function calc(operation, a, b) {
+  a = +a; // Явное преобразование типа в Number
+  b = +b;
   switch (operation) {
     case 'sum':
       return getSum(a, b);
@@ -71,12 +72,12 @@ function calc(operation, a, b) {
 
 
 // Проверки на правильность вводимых данных
-function checkIsRightNumber(a) {
-  return a !== '' && !isNaN(a);
-}
-
 function checkOperation(operation) {
   return ['sum', 'dif', 'multi', 'div', 'rem', 'exp'].includes(operation.trim())
+}
+
+function checkIsRightNumber(a) {
+  return a !== '' && !isNaN(a);
 }
 
 
@@ -105,6 +106,7 @@ function getRem(a, b) { ///   Взятие остатка от деления %
 function getExp(a, b) { ///   Возведение в степень **
   return a ** b
 }
+
 
 
 //  Тест вызовов калькулятора
