@@ -27,14 +27,10 @@ function createCalc() {
       }
       a = prompt("Введите первое число:");
       if (a === null) return; // Выбрать отмену = закрыть калькулятор
-      if (!checkIsRightNumber(a)) {
-        // Проверка на правильность ввода числа
-        alert("Error");
-        continue;
-      }
+
       b = prompt("Введите второе число:");
       if (b === null) return;
-      if (!checkIsRightNumber(b)) {
+      if (!checkIsRightNumber(a) || !checkIsRightNumber(b)) {
         // Проверка на правильность ввода числа
         alert("Error");
         continue;
