@@ -54,22 +54,22 @@ function calc(operation, a, b) {
   switch (operation) {
     case "sum":
     case "сложение":
-      return getSum(a, b);
+      return a + b;
     case "dif":
     case "вычитание":
-      return getDif(a, b);
+      return a - b;
     case "multi":
     case "умножение":
-      return getMulti(a, b);
+      return a * b;
     case "div":
     case "деление":
-      return getDiv(a, b);
+      return a / b;
     case "rem":
     case "взятие остатка от деления":
-      return getRem(a, b);
+      return a % b;
     case "exp":
     case "возведение в степень":
-      return getExp(a, b);
+      return a ** b;
   }
 }
 
@@ -93,37 +93,6 @@ function checkOperation(operation) {
 
 function checkIsRightNumber(a) {
   return a !== "" && !isNaN(a);
-}
-
-//  Операции
-function getSum(a, b) {
-  //   Сложение +
-  return a + b;
-}
-
-function getDif(a, b) {
-  //   Вычитание -
-  return a - b;
-}
-
-function getMulti(a, b) {
-  //   Умножение *
-  return a * b;
-}
-
-function getDiv(a, b) {
-  ///   Деление /
-  return a / b;
-}
-
-function getRem(a, b) {
-  ///   Взятие остатка от деления %
-  return a % b;
-}
-
-function getExp(a, b) {
-  ///   Возведение в степень **
-  return a ** b;
 }
 
 //  Тест вызовов калькулятора
