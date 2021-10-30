@@ -20,22 +20,21 @@ function createCalc() {
         "Введите операцию из списка:\nsum(Сложение)\ndif(Вычитание)\nmulti(Умножение)\ndiv(Деление)\nrem(Взятие остатка от деления)\nexp(Возведение в степень)"
       );
       if (operation === null) return; // Выбрать отмену = закрыть калькулятор
+
       if (!checkOperation(operation)) {
         // Проверка на существование операции
         alert("unknown operation");
         continue;
       }
+
       a = prompt("Введите первое число:");
       if (a === null) return; // Выбрать отмену = закрыть калькулятор
-      if (!checkIsRightNumber(a)) {
-        // Проверка на правильность ввода числа
-        alert("Error");
-        continue;
-      }
+
       b = prompt("Введите второе число:");
       if (b === null) return;
-      if (!checkIsRightNumber(b)) {
-        // Проверка на правильность ввода числа
+
+      if (!checkIsRightNumber(a) || !checkIsRightNumber(b)) {
+        // Проверка, что введено число
         alert("Error");
         continue;
       }
