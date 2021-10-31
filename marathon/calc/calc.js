@@ -31,6 +31,10 @@ function createCalc() {
       if (a === null) return; // Выбрать отмену = закрыть калькулятор
 
       b = prompt("Введите второе число:");
+      if ( (operation === 'деление' || operation === 'div') || (operation === 'взятие остатка от деления' || operation === 'rem') && +b === 0) {
+        alert('на ноль делить нельзя');
+        continue;
+      }
       if (b === null) return;
 
       if (!checkIsRightNumber(a) || !checkIsRightNumber(b)) {
