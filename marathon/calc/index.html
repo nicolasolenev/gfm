@@ -5,14 +5,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Marathon | Великий калькулятор</title>
+  <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="../../css/style.css">
+  <title>Marathon | Калькулятор</title>
 </head>
 
 <body>
 
-  <button onClick="createCalc()">Запустить Великий калькулятор</button>
+  <header class="header">
+    <h1 class="header__h1">Пример функции калькулятора на Javascript</h1>
+  </header>
 
-  <script src="calc.js"></script>
+  <main class="main container">
+
+    <pre class="hljs" style="display: block; overflow-x: scroll; padding: 0.5em; color: rgb(51, 51, 51); background: rgb(248, 248, 248);
+      max-width: 685px;"><span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> calc = (operation, a, b) =&gt; {
+
+  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> checkValue = <span class="hljs-built_in" style="color: rgb(0, 134, 179);">num</span> =&gt; typeof <span class="hljs-built_in" style="color: rgb(0, 134, 179);">num</span> !== <span class="hljs-string" style="color: rgb(221, 17, 68);">'number'</span> || !isFinite(<span class="hljs-built_in" style="color: rgb(0, 134, 179);">num</span>);
+  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> isIncorrectValue = checkValue(a) || checkValue(b);
+  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> checkDivisionByZero = (operation === <span class="hljs-string" style="color: rgb(221, 17, 68);">'div'</span> || operation === <span class="hljs-string" style="color: rgb(221, 17, 68);">'rem'</span>) &amp;&amp; b === <span class="hljs-number" style="color: teal;">0</span>;
+
+  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">if</span> (isIncorrectValue || checkDivisionByZero) {
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'Error'</span>;
+  }
+
+  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">switch</span> (operation) {
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">case</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'sum'</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> a + b;
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">case</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'dif'</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> a - b;
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">case</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'multi'</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> a * b;
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">case</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'div'</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> a / b;
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">case</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'rem'</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> a % b;
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">case</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'exp'</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> a ** b;
+    <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">default</span>:
+      <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'unknown operation'</span>;
+  }
+}</pre>
+  </main>
 </body>
 
 </html>
