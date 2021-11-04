@@ -54,16 +54,15 @@
       max-width: 685px;"><span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> calc = <span
           class="hljs-function"><span class="hljs-params">(operation, a, b)</span> =&gt;</span> {
   <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> operations = {
-    sum: <span class="hljs-function"><span class="hljs-params">(a, b)</span> =&gt;</span> +a + +b,
-    sub: <span class="hljs-function"><span class="hljs-params">(a, b)</span> =&gt;</span> a - b,
-    mult: <span class="hljs-function"><span class="hljs-params">(a, b)</span> =&gt;</span> a * b,
-    div: <span class="hljs-function"><span class="hljs-params">(a, b)</span> =&gt;</span> a / b,
+    sum: +a + +b,
+    sub: a - b,
+    mult: a * b,
+    div: a / b,
   };
 
   <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">if</span> (!(operation <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">in</span> operations)) <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'unknown operation'</span>; 
 
-  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> answer = operations[operation](a,
-    b);
+  <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">const</span> answer = operations[operation];
 
   <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">if</span> (!isFinite(answer)) <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">return</span> <span class="hljs-string" style="color: rgb(221, 17, 68);">'Error'</span>; 
 
