@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 100px auto 40px auto;
+}
+
+.calculator {
+  width: 364px;
+  height: 582px;
+  background: #17171C;
+  margin: 0 auto;
+  padding: 21px 20px 25px 20px;
+}
+
+.calculator__output span {
+  font-size: 96px;
+  line-height: 96px;
+  font-weight: 300;
+}
+
+.calculator__output {
+  width: 324px;
+  height: 96px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  color: #fff;
+}
+
+.calculator__row {
+  margin: 16px 0;
+  height: 72px;
+}
+
+.calculator__row span {
+  color: #fff;
+  margin-right: 16px;
+  padding: 20px;
+  display: inline-block;
+  width: 69px;
+  height: 72px;
+  background: #2E2F38;
+  border-radius: 24px;
+  font-size: 32px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.calculator__row span:hover {
+  background: #4E505F;
+}
+
+.calculator__row span:last-child {
+  margin-right: 0;
+}
+
+.calculator__row .right_row {
+  background-color: #4B5EFC;
+}
+
+.calculator__row .right_row:hover {
+  background-color: #5f71fe;
+}
+
+.calculator__row .zero {
+  width: 239px;
+}
+
+.calculator__row .delete {
+  width: 111px;
+}
+
+.calculator__row .delete_symbol {
+  font-size: 24px;
+  line-height: 38px;
+}
+
+/* work-sans-regular - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('../fonts/work-sans-v13-latin-regular.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/work-sans-v13-latin-regular.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* work-sans-300 - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''),
+    url('../fonts/work-sans-v13-latin-300.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../fonts/work-sans-v13-latin-300.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
