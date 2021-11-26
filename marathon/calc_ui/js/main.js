@@ -97,6 +97,9 @@ for (let oper of operations) {
 result.onclick = function () {
   if (a && b && operation) {
     res = output.innerHTML = calc(operation, a, b);
+    if (!Number.isInteger(res)) {
+      output.innerHTML = res.toFixed(3);
+    }
     a = res;
     checkresult = true;
     console.log('a: ' + a + ' b: ' + b + ' oper: ' + operation + ' check: ' + checkresult + ' res: ' + res);
