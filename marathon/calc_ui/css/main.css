@@ -75,6 +75,13 @@
   background: #5f71fe;
 }
 
+.calculator__buttons {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
 /* work-sans-regular - latin */
 @font-face {
   font-family: 'Work Sans';

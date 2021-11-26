@@ -98,7 +98,7 @@ result.onclick = function () {
   if (a && b && operation) {
     res = output.innerHTML = calc(operation, a, b);
     if (!Number.isInteger(res)) {
-      output.innerHTML = res.toFixed(3);
+      output.innerHTML = res.toFixed(2);
     }
     a = res;
     checkresult = true;
