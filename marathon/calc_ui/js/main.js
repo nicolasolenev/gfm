@@ -85,6 +85,10 @@ document.addEventListener("DOMContentLoaded", function () {
         output.innerHTML = (+output.innerHTML).toExponential(1);
       }
     }
+    if (a !== null && b === null && operation !== null) {
+      b = a;
+      a = result = output.innerHTML = calc(operation, a, b);
+    }
   }
 
 
