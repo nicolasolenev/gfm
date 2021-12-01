@@ -61,6 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
         output.innerHTML = calc(operation, a, b);
         a = output.innerHTML;
         b = null;
+        if (output.innerHTML.length > 5) {
+          output.innerHTML = (+output.innerHTML).toExponential(1);
+        }
       }
 
       operation = oper.innerHTML;
