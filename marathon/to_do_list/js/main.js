@@ -32,4 +32,4 @@ function showList() {
   }
 }
 
-export { list, STATUSES, ID, addTask, deleteTask };
+export { list, STATUSES, ID, addTask, deleteTask, changeStatus };
