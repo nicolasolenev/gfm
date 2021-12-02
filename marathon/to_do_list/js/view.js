@@ -14,13 +14,13 @@ for (let button of addTaskBtns) {
   button.addEventListener('click', addTaskHandler);
 }
 
-function addTaskHandler() {
-  const whereAddTask = this.parentElement.parentElement;
-  const taskName = this.parentElement.firstElementChild.value;
+function addTaskHandler(event) {
+  const whereAddTask = event.currentTarget.parentElement.parentElement;
+  const taskName = event.currentTarget.parentElement.firstElementChild.value;
   const isNotEmptyField = (taskName.trim() !== '');
   if (isNotEmptyField) {
-    this.parentElement.firstElementChild.value = null;
-    const priority = this.parentElement.parentElement.firstElementChild.textContent;
+    event.currentTarget.parentElement.firstElementChild.value = null;
+    const priority = event.currentTarget.parentElement.parentElement.firstElementChild.textContent;
     addTask(taskName, priority);
     const newTask = taskTemplate.cloneNode('deep');
     newTask.setAttribute('id', ID);
@@ -53,25 +53,12 @@ function checkboxTaskHandler() {
   }
 }
 
-// this code to add a task by clicking on Enter (it's a crutch)
 const inputs = document.querySelectorAll('.todo_list__input');
 for (let input of inputs) {
   input.addEventListener('keydown', function (key) {
     const isEnterBtn = (key.keyCode === 13);
     if (isEnterBtn) {
-      const whereAddTask = this.parentElement.parentElement;
-      const taskName = this.parentElement.firstElementChild.value;
-      this.parentElement.firstElementChild.value = null;
-      const priority = this.parentElement.parentElement.firstElementChild.textContent;
-      addTask(taskName, priority);
-      const newTask = taskTemplate.cloneNode('deep');
-      newTask.setAttribute('id', ID);
-      newTask.querySelector('.todo_list__input').textContent = taskName;
-      const deleteBtn = newTask.querySelector('.todo_list__delete_button');
-      deleteBtn.addEventListener('click', deleteTaskHandler);
-      const checkbox = newTask.querySelector('.todo_list__checkbox');
-      checkbox.addEventListener('click', checkboxTaskHandler);
-      whereAddTask.append(newTask);
+      addTaskHandler(event);
     }
   });
 }
