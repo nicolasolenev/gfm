@@ -20,7 +20,6 @@ body {
 
 .todo_list {
   width: 476px;
-  height: 688px;
   background: #fff;
   margin: 0 auto;
   padding: 25px 8px 25px 8px;
@@ -43,6 +42,7 @@ body {
   display: flex;
   overflow: hidden;
   margin-bottom: 8px;
+  transition: all .3s;
 }
 
 .todo_list__input {
