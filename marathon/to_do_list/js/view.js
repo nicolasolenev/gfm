@@ -2,7 +2,7 @@ import { list, STATUSES, ID, addTask, deleteTask } from './main.js'
 
 const newTaskTemplate = document.createElement('div');
 newTaskTemplate.className = 'todo_list__task';
-newTaskTemplate.insertAdjacentHTML('afterbegin', '<input type="checkbox" class="todo_list__checkbox"><input type = "text" class= "todo_list__input"><button class="todo_list__delete_button"><img class="todo_list__delete_button_icon" src="add-icon.svg"></button>');
+newTaskTemplate.insertAdjacentHTML('afterbegin', '<input type="checkbox" class="todo_list__checkbox"><input type = "text" class= "todo_list__input"><button class="todo_list__delete_button"><img class="todo_list__delete_button_icon" src="img/add-icon.svg"></button>');
 
 const addTaskButtons = document.querySelectorAll('.todo_list__add_button');
 console.log(addTaskButtons);
