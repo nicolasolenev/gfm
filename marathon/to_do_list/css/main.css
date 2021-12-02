@@ -51,6 +51,7 @@ body {
   flex-grow: 1;
   outline:none;
   background: none;
+  width: 369px;
 }
 .todo_list__input::placeholder {
     color: #BBBBBB;
@@ -63,6 +64,8 @@ body {
   background: none;
   cursor: pointer;
   margin: 12px;
+  width: 20px;
+  height: 20px;
 }
 
 .todo_list__add_button_icon,
@@ -75,7 +78,7 @@ body {
 }
 
 .todo_list__checkbox {
-  width: 21px;
+  min-width: 21px;
   height: 21px;
   border-radius: 50%;
   border: 1px solid #998899;
