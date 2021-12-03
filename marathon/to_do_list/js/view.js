@@ -1,49 +1,49 @@
 import { list, ID, addTask, deleteTask, changeStatus } from './main.js'
 
-const taskTemplate = document.createElement('div');
-taskTemplate.className = 'todo_list__task';
-taskTemplate.insertAdjacentHTML('afterbegin', `
+const taskHtmlElementTemplate = document.createElement('div');
+taskHtmlElementTemplate.className = 'todo_list__task';
+taskHtmlElementTemplate.insertAdjacentHTML('afterbegin', `
 <input type="checkbox" class="todo_list__checkbox">
 <span class="todo_list__input"></span>
 <button class="todo_list__delete_button">
   <img class="todo_list__delete_button_icon" src="img/add-icon.svg">
 </button>`);
 
-const addTaskBtns = document.querySelectorAll('.todo_list__add_button');
-for (let button of addTaskBtns) {
-  button.addEventListener('click', addTaskHandler);
+const addNewTaskBtns = document.querySelectorAll('.todo_list__add_button');
+for (let addNewTaskBtn of addNewTaskBtns) {
+  addNewTaskBtn.addEventListener('click', addNewTaskBtnHandler);
 }
 
-function addTaskHandler(event) {
+function addNewTaskBtnHandler(event) {
   const whereAddTask = event.currentTarget.parentElement.parentElement;
-  const taskName = event.currentTarget.parentElement.firstElementChild.value;
-  const isNotEmptyField = (taskName.trim() !== '');
-  if (isNotEmptyField) {
-    event.currentTarget.parentElement.firstElementChild.value = null;
-    const priority = event.currentTarget.parentElement.parentElement.firstElementChild.textContent;
+  const inputField = event.currentTarget.parentElement.firstElementChild;
+  const taskName = inputField.value;
+  const isNotEmptyInputField = (taskName.trim() !== '');
+  if (isNotEmptyInputField) {
+    inputField.value = null;
+    const priority = whereAddTask.firstElementChild.textContent;
     addTask(taskName, priority);
-    const newTask = taskTemplate.cloneNode('deep');
-    newTask.setAttribute('id', ID);
-    newTask.querySelector('.todo_list__input').textContent = taskName;
-    const deleteBtn = newTask.querySelector('.todo_list__delete_button');
-    deleteBtn.addEventListener('click', deleteTaskHandler);
-    const checkbox = newTask.querySelector('.todo_list__checkbox');
-    checkbox.addEventListener('click', checkboxTaskHandler);
-    whereAddTask.append(newTask);
+    const newTaskHtmlElement = taskHtmlElementTemplate.cloneNode('deep');
+    newTaskHtmlElement.setAttribute('id', ID);
+    const taskNameTextElement = newTaskHtmlElement.querySelector('.todo_list__input');
+    taskNameTextElement.textContent = taskName;
+    const deleteBtnElement = newTaskHtmlElement.querySelector('.todo_list__delete_button');
+    deleteBtnElement.addEventListener('click', deleteTaskBtnHandler);
+    const checkboxElement = newTaskHtmlElement.querySelector('.todo_list__checkbox');
+    checkboxElement.addEventListener('click', checkboxTaskHandler);
+    whereAddTask.append(newTaskHtmlElement);
   }
 }
 
-
-
-function deleteTaskHandler() {
-  const taskID = +this.parentElement.id;
+function deleteTaskBtnHandler(event) {
+  const taskID = getTaskID(event);
   deleteTask(taskID);
   this.parentElement.remove();
 }
 
-function checkboxTaskHandler() {
-  const taskID = +this.parentElement.id;
-  const task = this.parentElement;
+function checkboxTaskHandler(event) {
+  const taskID = getTaskID(event);
+  const task = event.currentTarget.parentElement;
   if (task.classList.contains('done')) {
     changeStatus(taskID, 'In Progress');
     task.classList.remove('done');
@@ -53,12 +53,6 @@ function checkboxTaskHandler() {
   }
 }
 
-const inputs = document.querySelectorAll('.todo_list__input');
-for (let input of inputs) {
-  input.addEventListener('keydown', function (key) {
-    const isEnterBtn = (key.keyCode === 13);
-    if (isEnterBtn) {
-      addTaskHandler(event);
-    }
-  });
+function getTaskID(event) {
+  return +event.currentTarget.parentElement.id;
 }

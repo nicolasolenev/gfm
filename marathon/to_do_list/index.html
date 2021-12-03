@@ -24,27 +24,29 @@
 
         <section class="todo_list__section">
           <h2 class="todo_list__title">high</h2>
-          <div class="todo_list__add_task">
+          <form class="todo_list__add_task" onsubmit="return false">
             <input type="text" class="todo_list__input" placeholder="Добавить важных дел">
             <button class="todo_list__add_button"><img class="todo_list__add_button_icon"
                 src="img/add-icon.svg"></button>
-          </div>
+          </form>
         </section>
 
         <section class="todo_list__section">
           <h2 class="todo_list__title">low</h2>
-          <div class="todo_list__add_task">
+          <form class="todo_list__add_task" onsubmit="return false">
             <input type="text" class="todo_list__input" placeholder="Добавить">
             <button class="todo_list__add_button"><img class="todo_list__add_button_icon"
                 src="img/add-icon.svg"></button>
-          </div>
+          </form>
         </section>
 
       </div>
 
     </div>
 
-    <script type='module' src="js/view.js"></script>
+  </main>
+
+  <script type='module' src="js/view.js"></script>
 </body>
 
 </html>
