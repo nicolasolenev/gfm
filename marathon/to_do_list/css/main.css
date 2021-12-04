@@ -101,10 +101,6 @@ body {
   right: 2px;
 }
 
-textarea {
-  resize: none; /* Запрещаем изменять размер */
-}
-
-.done {
+.Done {
   background: #F4F4F4;
 }

@@ -1,5 +1,8 @@
 const list = [];
-const STATUSES = ['To Do', 'In Progress', 'Done'];
+const TODO = 'To Do';
+const IN_PROGRESS = 'In Progress';
+const DONE = 'Done'
+const STATUSES = [TODO, IN_PROGRESS, DONE];
 let ID = 0;
 
 function addTask(task, priority = 'low') {
@@ -32,4 +35,4 @@ function showList() {
   }
 }
 
-export { list, STATUSES, ID, addTask, deleteTask, changeStatus };
+export { list, ID, addTask, deleteTask, changeStatus, TODO, IN_PROGRESS, DONE };
