@@ -36,6 +36,10 @@ dl dt {
   margin-bottom: 5px;
 }
 
+.highligh {
+  font-weight: 700;
+}
+
 /* noto-sans-regular - latin_cyrillic */
 @font-face {
   font-family: 'Noto Sans';
