@@ -21,3 +21,7 @@ body {
 .otvet {
   margin-top: 20px;
 }
+
+#firstName {
+  width: 225px;
+}
