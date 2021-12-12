@@ -1,4 +1,4 @@
-export const countries = {
+export default {
   'AF': 'Afghanistan',
   'AX': 'Aland Islands',
   'AL': 'Albania',
