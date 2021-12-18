@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>Weather</title>
+</head>
+
+<body>
+  <main class="container">
+    <div class="weather">
+      <div class="weather__search">
+        <form class="weather__form" onsubmit="return false">
+          <input class="weather__input" type="text" placeholder="Aktobe">
+          <button class="weather__button"><img src="img/search-ico.svg" alt="search"></button>
+        </form>
+      </div>
+
+      <div class="weather__left">
+        <div id="weather__windows">
+          <div class="weather__now">
+            <div class="weather__temperature"><span class="temperature"></span>°</div>
+            <img class="weather__icon" src="" alt="">
+            <div class="weather__city"></div>
+            <div class="add_location"><img src="img/heart-ico.svg" alt="add_location"></div>
+          </div>
+          <div class="weather__details">
+            <div class="weather__city"></div>
+            <ul>
+              <li>Temperature: <span class="temperature"></span>°</li>
+              <li>Feels like: <span id="feels_like"></span>°</li>
+              <li>Weather: <span id="weather"></span></li>
+              <li>Sunrise: <span id="sunrise"></span></li>
+              <li>Sunset: <span id="sunset"></span></li>
+            </ul>
+          </div>
+          <div class="weather__forecast">
+            <div class="weather__city"></div>
+            <div class="weather__date_cards">
+              <div class="weather__date_card">
+                <div class="weather__date">17 May</div>
+                <div class="weather__time">12:00</div>
+                <div class="weather__options">
+                  <ul>
+                    <li>Temperature: <span>13</span>°</li>
+                    <li>Feels like: <span>10</span>°</li>
+                  </ul>
+                </div>
+                <div class="weather__cloudy">
+                  <span>Rain</span>
+                  <img src="/img/rain-ico.svg" alt="">
+                </div>
+              </div>
+
+              <div class="weather__date_card">
+                <div class="weather__date">17 May</div>
+                <div class="weather__time">12:00</div>
+                <div class="weather__options">
+                  <ul>
+                    <li>Temperature: <span>13</span>°</li>
+                    <li>Feels like: <span>10</span>°</li>
+                  </ul>
+                </div>
+                <div class="weather__cloudy">
+                  <span>Rain</span>
+                  <img src="/img/rain-ico.svg" alt="">
+                </div>
+              </div>
+
+              <div class="weather__date_card">
+                <div class="weather__date">17 May</div>
+                <div class="weather__time">12:00</div>
+                <div class="weather__options">
+                  <ul>
+                    <li>Temperature: <span>13</span>°</li>
+                    <li>Feels like: <span>10</span>°</li>
+                  </ul>
+                </div>
+                <div class="weather__cloudy">
+                  <span>Rain</span>
+                  <img src="/img/rain-ico.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="weather__menu">
+          <ul id="weather__menu">
+            <li id="0" class="menu-checked">Now</li>
+            <li id="1">Details</li>
+            <li id="2">Forecast</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="weather__right">
+        <div class="weather__right-header">
+          Added Locations:
+        </div>
+        <div class="locations">
+          <ul id="locations">
+            <!-- <li>Amur</li>
+            <li>Samara</li>
+            <li>Bali</li>
+            <li>Dane</li>
+            <li>Kilo</li>
+            <li>Nur-Sultan</li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="/js/main.js" type="module"></script>
+</body>
+
+</html>
