@@ -14,7 +14,6 @@ const errorText = 'No information or wrong name';
 UI.FORM.addEventListener('submit', function () {
   const firstName = UI.INPUT.value.trim();
   const isNotEmptyName = firstName !== '';
-
   if (isNotEmptyName) {
     UI.FORM.reset();
     UI.GENDER.textContent = '';
