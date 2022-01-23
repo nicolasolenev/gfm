@@ -1,9 +1,138 @@
-function getElem(selector) {
-  return document.querySelector(selector);
+import UI from './view.js';
+import storage from './storage.js';
+
+const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
+const checkedCity = JSON.parse(localStorage.getItem('favoriteCities')).checked;
+
+UI.FORM.addEventListener('submit', function () {
+  const cityName = UI.INPUT.value.trim();
+  let weather = new Promise(() => getWeather(cityName));
+  weather.then(() => getForecast(cityName));
+  this.reset();
+});
+
+const favoriteCities = storage.getFavoriteCities().cities;
+
+for (let city of favoriteCities) {
+  const location = UI.LOCATION_TEMPLATE.content.cloneNode('deep');
+  const cityName = location.querySelector('.city_name');
+  const deleteButton = location.querySelector('.delete_button');
+  cityName.textContent = city;
+  cityName.addEventListener('click', function () {
+    getWeather(cityName.textContent);
+    getForecast(cityName.textContent);
+    storage.saveCheckedCity(cityName.textContent);
+  });
+  deleteButton.addEventListener('click', function deleteLocation() {
+    this.closest('.location').remove();
+  });
+  deleteButton.addEventListener('click', storage.deleteFavoriteCity);
+  UI.LOCATIONS.append(location);
 }
 
-function convertDeg(degree) {
-  return Math.round(degree - 273.15);
+UI.ADD_LOCATION.addEventListener('click', storage.saveFavoriteCity);
+
+UI.ADD_LOCATION.addEventListener('click', add_location);
+
+getWeather(checkedCity);
+getForecast(checkedCity);
+
+async function getWeather(cityName) {
+  const serverUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+  // fetch(url)
+  //   .then(response => response.json())
+  //   .then(function (data) {
+  //     if (data.cod >= '400') {
+  //       throw new Error(data.message);
+  //     }
+  //     const temperature = Math.round(data.main.temp);
+  //     UI.CITY.forEach(elem => {
+  //       elem.textContent = data.name;
+  //     });
+  //     UI.TEMPERATURE.forEach(elem => {
+  //       elem.textContent = temperature;
+  //     });
+  //     UI.ICON.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+  //     UI.FEELS_LIKE.textContent = Math.round(data.main.feels_like);
+  //     UI.WEATHER.textContent = data.weather[0].main;
+  //     UI.SUNRISE.textContent = getTime(data.sys.sunrise);
+  //     UI.SUNSET.textContent = getTime(data.sys.sunset);
+  //     localStorage.setItem('checked', UI.CITY[0].textContent);
+  //   })
+  //   .catch(err => alert(err.message));
+
+  try {
+    let response = await fetch(url);
+    let data = await response.json();
+    if (data.cod >= '400') {
+      throw new Error(data.message);
+    }
+    const temperature = Math.round(data.main.temp);
+    UI.CITY.forEach(elem => {
+      elem.textContent = data.name;
+    });
+    UI.TEMPERATURE.forEach(elem => {
+      elem.textContent = temperature;
+    });
+    UI.ICON.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+    UI.FEELS_LIKE.textContent = Math.round(data.main.feels_like);
+    UI.WEATHER.textContent = data.weather[0].main;
+    UI.SUNRISE.textContent = getTime(data.sys.sunrise);
+    UI.SUNSET.textContent = getTime(data.sys.sunset);
+    storage.saveCheckedCity(cityName);
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
+function getForecast(cityName) {
+  const urlTest = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`;
+  fetch(urlTest)
+    .then(response => response.json())
+    .then(function (data) {
+      UI.FORECAST_CARDS.textContent = '';
+      data.list.forEach(function (item) {
+        if (new Date(item.dt * 1000).getHours() !== 12) {
+          return;
+        }
+        const forecastCard = UI.FORECAST_TEMPLATE.content.cloneNode('deep');
+        const forecastDate = forecastCard.querySelector('.weather__date');
+        const forecastTemp = forecastCard.querySelector('.forecast_temperature');
+        const forecastFeelsLike = forecastCard.querySelector('.forecast_feels_like');
+        const forecastCloudy = forecastCard.querySelector('.forecast_cloudy');
+        const forecastImg = forecastCard.querySelector('.forecast_img');
+        forecastDate.textContent = new Date(item.dt * 1000).getDate() + ' ' + new Date(item.dt * 1000).toLocaleString('default', { month: 'short' });
+        forecastTemp.textContent = Math.round(item.main.temp);
+        forecastFeelsLike.textContent = Math.round(item.main.feels_like);
+        forecastCloudy.textContent = item.weather[0].main;
+        forecastImg.src = `https://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
+
+        UI.FORECAST_CARDS.append(forecastCard);
+
+      });
+    })
+  // .catch(err => alert(err.message));
+}
+
+function add_location() {
+  const location = UI.LOCATION_TEMPLATE.content.cloneNode('deep');
+  const cityName = location.querySelector('.city_name');
+  const deleteButton = location.querySelector('.delete_button');
+  const isLocationNotSaved = !UI.LOCATIONS.textContent.includes(UI.CITY[0].textContent);
+
+  if (isLocationNotSaved) {
+    cityName.textContent = UI.CITY[0].textContent;
+    cityName.addEventListener('click', function () {
+      getWeather(cityName.textContent);
+      getForecast(cityName.textContent);
+    });
+    deleteButton.addEventListener('click', function deleteLocation() {
+      this.closest('.location').remove();
+    });
+    deleteButton.addEventListener('click', storage.deleteFavoriteCity);
+    UI.LOCATIONS.append(location);
+  }
 }
 
 function getTime(ms) {
@@ -13,109 +142,3 @@ function getTime(ms) {
   minutes = (minutes <= 9) ? '0' + minutes : minutes;
   return `${hours}:${minutes}`;
 }
-
-const UI = {
-  weatherWindows: getElem('#weather__windows').children,
-  weatherMenu: getElem('#weather__menu').children,
-  form: getElem('.weather__form'),
-  input: getElem('.weather__input'),
-  city: document.querySelectorAll('.weather__city'),
-  temp: document.querySelectorAll('.temperature'),
-  feels_like: getElem('#feels_like'),
-  weather: getElem('#weather'),
-  sunrise: getElem('#sunrise'),
-  sunset: getElem('#sunset'),
-  locations: getElem('#locations'),
-  add_location: getElem('.add_location'),
-  icon: getElem('.weather__icon'),
-}
-
-
-for (let elem of UI.weatherMenu) {
-  elem.addEventListener('click', changeWindow);
-}
-
-function changeWindow(event) {
-  if (!event.target.classList.contains('menu-checked')) {
-    const preventTarget = event.target.parentElement.querySelector('.menu-checked');
-    const preventTargetId = preventTarget.getAttribute('id');
-    const preventWindow = UI.weatherWindows[preventTargetId];
-    preventWindow.style.display = 'none';
-    preventTarget.classList.remove('menu-checked');
-    event.target.classList.add('menu-checked');
-    const targetId = event.target.getAttribute('id');
-    const currentWindow = UI.weatherWindows[targetId];
-    currentWindow.style.display = 'block';
-  }
-}
-
-UI.form.addEventListener('submit', function () {
-  getWeather(UI.input.value.trim());
-  UI.form.reset();
-});
-
-function getWeather(cityName) {
-  const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
-  const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
-  const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
-  fetch(url)
-    .then(response => response.json())
-    .then(function (data) {
-      console.log(data);
-      const temp = convertDeg(data.main.temp);
-      const feels_like = convertDeg(data.main.feels_like);
-      UI.city.forEach(elem => {
-        elem.textContent = data.name;
-      });
-      UI.temp.forEach(elem => {
-        elem.textContent = temp;
-      });
-      UI.icon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
-      UI.feels_like.textContent = feels_like;
-      UI.weather.textContent = data.weather[0].main;
-      UI.sunrise.textContent = getTime(data.sys.sunrise);
-      UI.sunset.textContent = getTime(data.sys.sunset);
-
-      if (!UI.locations.textContent.includes(UI.city[0].textContent)) {
-        UI.add_location.firstElementChild.setAttribute('src', '/img/heart-ico.svg');
-      } else {
-        UI.add_location.firstElementChild.setAttribute('src', '/img/heart-selected-ico.svg');
-      }
-    });
-}
-
-UI.add_location.addEventListener('click', function (event) {
-  const li = document.createElement('li');
-  if (!UI.locations.textContent.includes(UI.city[0].textContent)) {
-    localStorage.setItem(UI.city[0].textContent, UI.city[0].textContent);
-    console.log(localStorage);
-    li.textContent = UI.city[0].textContent;
-    li.addEventListener('click', function () {
-      getWeather(li.textContent);
-    });
-    UI.locations.append(li);
-    console.log(event.target);
-    event.target.setAttribute('src', '/img/heart-selected-ico.svg');
-  } else {
-    localStorage.removeItem(UI.city[0].textContent);
-    console.log(localStorage);
-    event.target.setAttribute('src', '/img/heart-ico.svg');
-    Array.from(UI.locations.children).find(item => item.textContent === UI.city[0].textContent).remove();
-  }
-});
-
-for (let key in localStorage) {
-  if (!localStorage.hasOwnProperty(key)) {
-    continue;
-  }
-  const li = document.createElement('li');
-  li.textContent = key;
-  li.addEventListener('click', function () {
-    getWeather(li.textContent);
-  });
-  UI.locations.append(li);
-
-}
-
-getWeather('Moscow');
-

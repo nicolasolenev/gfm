@@ -275,21 +275,50 @@
   font-size: 24px;
   line-height: 28px;
   overflow-y: scroll;
+  margin-right: 20px;
 }
 
 .locations ul {
   list-style-type: none;
-  display: inline-block;
 }
 
 .locations ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
   font-size: 24px;
   line-height: 28px;
-  margin-bottom: 14px;
+}
+
+.city_name {
+  font-size: 24px;
+  line-height: 28px;
+  padding-right: 30px;
   cursor: pointer;
 }
 
-.locations ul li:hover {
+.city_name:hover {
   text-decoration: underline;
+}
+
+.delete_button_img {
+  transform: rotate(45deg);
+    -webkit-filter: opacity(.4);
+          filter: opacity(.4);
+}
+
+.delete_button_img:hover {
+  -webkit-filter: opacity(1);
+          filter: opacity(1);
+}
+
+.delete_button {
+  display: none;
+  flex-basis: 28px;
+  cursor: pointer;
+}
+
+.locations ul li:hover .delete_button {
+  display: flex;
 }
 /* /weather__right */
