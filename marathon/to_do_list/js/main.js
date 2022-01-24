@@ -7,8 +7,6 @@ const DONE = 'Done'
 const STATUSES = [TODO, IN_PROGRESS, DONE];
 let ID = 0;
 
-renderList();
-
 // localStorage.clear();
 
 if (localStorage.getItem('list')) {
@@ -22,6 +20,8 @@ if (localStorage.getItem('ID')) {
 } else {
   localStorage.setItem('ID', '0');
 }
+
+renderList();
 
 function saveToLocalStorage(task) {
   let list = JSON.parse(localStorage.getItem('list'));
