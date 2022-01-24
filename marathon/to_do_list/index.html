@@ -22,16 +22,17 @@
 
       <div class="todo_list">
 
-        <section class="todo_list__section">
+        <section id='high' class="todo_list__section">
           <h2 class="todo_list__title">high</h2>
           <form class="todo_list__add_task" onsubmit="return false">
             <input type="text" class="todo_list__input" placeholder="Добавить важных дел">
-            <button class="todo_list__add_button"><img class="todo_list__add_button_icon"
-                src="img/add-icon.svg"></button>
+            <button class="todo_list__add_button">
+              <img class="todo_list__add_button_icon" src="img/add-icon.svg" alt="Добавить">
+            </button>
           </form>
         </section>
 
-        <section class="todo_list__section">
+        <section id='low' class="todo_list__section">
           <h2 class="todo_list__title">low</h2>
           <form class="todo_list__add_task" onsubmit="return false">
             <input type="text" class="todo_list__input" placeholder="Добавить">
@@ -46,6 +47,8 @@
 
   </main>
 
+  <script type='module' src="js/storage.js"></script>
+  <script type='module' src="js/main.js"></script>
   <script type='module' src="js/view.js"></script>
 </body>
 
