@@ -1,0 +1,262 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+}
+
+.body {
+  background-color: #E5E5E5;
+}
+
+.main {
+  margin: 30px 30px 0 30px;
+}
+
+
+/* C H A T   M A I N   W I N D O W */
+.chat {
+  width: 320px;
+  height: 533px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 8px;
+  position: relative;
+}
+
+.chat__top_btns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.chat__btn {
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 0;
+  border: 1px solid #000;
+  background-color: #fff;
+  height: 32px;
+  padding: 0 8px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.chat__btn:hover {
+  background-color: #E5E5E5;
+}
+
+.chat__window_wrapper {
+  background-image: url('../img/bg.jpg');
+  background-size: cover;
+  border: 1px solid #000;
+  width: 304px;
+  height: 437px;
+  margin-bottom: 8px;
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.chat__window {
+  width: 304px;
+  min-height: 0;
+  max-height: 435px;
+  padding: 8px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.chat__message {
+  background: rgb(95 174 248 / 63%);
+  display: flex;
+  flex-direction: column;
+  padding: 1px 5px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 16px;
+  align-items: flex-end;
+  border-radius: 10px;
+}
+
+.any_message {
+  align-self: flex-start;
+  background: rgb(240 213 55 / 83%);
+}
+
+.visible {
+  display: block;
+}
+
+.chat__send_form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat__input {
+  height: 32px;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 0;
+  border: 1px solid #000;
+  outline: none;
+  padding: 6px;
+  width: 267px;
+}
+
+.message {
+  margin-bottom: 4px;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.time {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.history_loaded {
+  display: flex;
+  align-self: center;
+  background: #dcdadc91;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin: 10px 0;
+  color: #1d1d1d82;
+}
+
+
+#test {
+  position: absolute;
+  z-index: 1;
+  top: -30px;
+  left: calc(50% - 45px);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.date {
+  display: flex;
+  align-self: center;
+  background: #dcdadc91;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin: 10px 0;
+  color: #1d1d1d82;
+}
+
+/* /C H A T   M A I N   W I N D O W */
+
+
+
+/* P O P U P */
+.popup_wrapper {
+  /* display: none; */
+  width: 320px;
+  height: 533px;
+   -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  background: rgba(83, 83, 83, 0.75);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.popup {
+  width: 273px;
+  height: 319px;
+  background-color: #fff;
+  padding: 16px 14px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 20%;
+  left: 0;
+  right: 0;
+}
+
+.popup__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 16px;
+}
+
+.popup__exit {
+  opacity: 0.45;
+  transform: rotate(-45deg);
+  font-size: 24px;
+  line-height: 70%;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.popup__main {
+  margin-top: 70px;
+}
+
+.popup__main_title {
+  margin-bottom: 8px;
+}
+
+.popup__input {
+  height: 32px;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 0;
+  border: 1px solid #000;
+  outline: none;
+  padding: 6px;
+  width: 245px;
+  margin-bottom: 7px;
+}
+
+.popup__settings {
+  margin-top: 0;
+}
+
+.popup__settings .popup__input {
+  width: 207px;
+}
+/* /P O P U P */
+
+@media (max-width: 700px) {
+.main {
+  margin: 0;
+}
+.chat {
+height: 93vh;
+width: 100%;
+}
+
+.chat__window_wrapper {
+  width: 100%;
+  height: calc(100% - 79px);
+}
+
+.chat__window {
+  width: 100%;
+  max-height: 76vh;
+}
+
+.chat__input {
+  width: calc(100% - 40px);
+}
+
+.popup_wrapper {
+  width: 100%;
+}
+
+}
