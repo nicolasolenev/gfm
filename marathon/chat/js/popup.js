@@ -74,7 +74,6 @@ async function verificationHandler() {
     if (isValidAccount) {
       const user = await response.json();
       COOKIE.set(COOKIE_KEY.MAIL, user.email);
-      setSocket();
       removePopup();
       startChat();
     }
