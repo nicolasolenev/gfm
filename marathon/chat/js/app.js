@@ -5,7 +5,7 @@ import renderPopup from './popup.js'
 import { getTime, getDay, getMonth } from './time.js'
 import { createMessageNode, sendMessage, createDateNode } from './message.js'
 
-const WS_URL = 'ws://chat1-341409.oa.r.appspot.com/websockets?';
+const WS_URL = 'wss://chat1-341409.oa.r.appspot.com/websockets?';
 const DOMAIN = 'https://chat1-341409.oa.r.appspot.com/api/';
 const URL = {
   USER: DOMAIN + 'user',
